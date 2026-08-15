@@ -1,50 +1,110 @@
-# Breast Cancer Detection
+# Breast Cancer Detection using SVM
 
-A machine learning pipeline that classifies breast tumor diagnostic data as **malignant** or **benign**, built during a Data Science internship at Take It Smart (OPC) Pvt Ltd (Sep 2025 – Dec 2025).
+A machine learning project that classifies breast tumors as **Malignant** or **Benign** using a Support Vector Machine (SVM) model trained on the Wisconsin Breast Cancer dataset.
 
-## Overview
+## 📌 Overview
 
-This project applies the full data science workflow — cleaning, exploration, dimensionality reduction, and model training/comparison — to a breast cancer diagnostic dataset, with the goal of predicting tumor malignancy from measurements derived from digitized cell nuclei images.
+This project uses a Support Vector Machine classifier to predict whether a breast mass is cancerous based on features computed from a digitized image of a fine needle aspirate (FNA) of the breast mass. The entire pipeline — data loading, preprocessing, training, and evaluation — is implemented in a single Jupyter Notebook.
 
-## Tech Stack
+## 📂 Project Structure
 
-- **Python**
-- **Pandas / NumPy** — data handling and preprocessing
-- **Matplotlib / Seaborn** — exploratory data analysis and visualization
-- **Scikit-learn** — model training and evaluation
-- **PCA** — dimensionality reduction
+```
+breast-cancer-detection/
+│
+├── breast_cancer_detection.ipynb   # Main notebook (data prep, training, evaluation)
+├── README.md                       # Project documentation
+└── requirements.txt                # Python dependencies
+```
 
-## Pipeline
+## 📊 Dataset
 
-1. **Data Cleaning**
-   Checked for missing values and irrelevant columns, and converted the diagnosis label into numeric form for model training.
+- **Source:** Wisconsin Breast Cancer Diagnostic Dataset (available via `sklearn.datasets.load_breast_cancer()` or the [UCI ML Repository](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic))
+- **Samples:** 569
+- **Classes:** Malignant (0), Benign (1)
+- **Features:** 30 numeric features computed from digitized FNA images
 
-2. **Exploratory Data Analysis (EDA)**
-   Visualized class distribution and feature relationships using Seaborn/Matplotlib, including correlation heatmaps and distribution comparisons between malignant and benign cases.
+## 🔑 Feature (Update) Keys
 
-3. **Dimensionality Reduction (PCA)**
-   Applied Principal Component Analysis to reduce the feature space, addressing high correlation between related measurements (e.g. radius, perimeter, area) and improving model efficiency.
+These are the dataset's feature keys/columns — use these exact names if updating, filtering, or engineering features in the notebook:
 
-4. **Model Training**
-   Trained and compared two classifiers:
-   - **Random Forest** — an ensemble of decision trees, robust to non-linear relationships
-   - **Support Vector Machine (SVM)** — finds the optimal separating hyperplane between classes
+**Mean features:**
+`mean radius`, `mean texture`, `mean perimeter`, `mean area`, `mean smoothness`, `mean compactness`, `mean concavity`, `mean concave points`, `mean symmetry`, `mean fractal dimension`
 
-5. **Evaluation**
-   Compared models using accuracy, precision/recall, F1-score, and confusion matrix, with particular attention to recall on the malignant class, since missing a malignant case (false negative) carries a much higher cost than a false positive in a medical context.
+**Standard error (SE) features:**
+`radius error`, `texture error`, `perimeter error`, `area error`, `smoothness error`, `compactness error`, `concavity error`, `concave points error`, `symmetry error`, `fractal dimension error`
 
-## Results
+**"Worst" (largest mean) features:**
+`worst radius`, `worst texture`, `worst perimeter`, `worst area`, `worst smoothness`, `worst compactness`, `worst concavity`, `worst concave points`, `worst symmetry`, `worst fractal dimension`
 
-Both models achieved strong classification performance, with SVM and Random Forest each showing high accuracy in distinguishing malignant from benign cases.
+**Target key:**
+`target` → 0 = malignant, 1 = benign
 
-## Key Learnings
+> When updating the model with new data, ensure your input matches these 30 feature keys exactly, in the same order, and is scaled using the same scaler fitted on the training data.
 
-- Handling correlated features in medical diagnostic data
-- Applying PCA for dimensionality reduction without losing predictive signal
-- Choosing evaluation metrics appropriate to the domain — prioritizing recall over raw accuracy in a healthcare context
-- Comparing ensemble methods (Random Forest) against margin-based classifiers (SVM)
+## ⚙️ Requirements
 
-## Author
+```
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+jupyter
+```
+
+Install with:
+```bash
+pip install -r requirements.txt
+```
+
+## 🚀 How to Run
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/uday-tc/breast-cancer-detection.git
+   cd breast-cancer-detection
+   ```
+2. Install dependencies
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Launch the notebook
+   ```bash
+   jupyter notebook breast_cancer_detection.ipynb
+   ```
+4. Run all cells to reproduce data preprocessing, training, and evaluation.
+
+## 🧠 Model
+
+- **Algorithm:** Support Vector Machine (SVM)
+- **Preprocessing:** Feature scaling (StandardScaler) applied to all 30 features before training
+- **Train/Test Split:** 80/20 (adjust as per your notebook's actual split)
+- **Evaluation Metrics:** Accuracy, Precision, Recall, F1-score, Confusion Matrix
+
+## 📈 Results
+
+| Metric      | Score |
+|-------------|-------|
+| Accuracy    |  |
+| Precision   |  |
+| Recall      |  |
+| F1-score    |  |
+
+*(Fill in with the actual metrics from your notebook's output.)*
+
+## 🔮 Future Improvements
+
+- Compare SVM against other models (Logistic Regression, Random Forest) for benchmarking
+- Add hyperparameter tuning (GridSearchCV) for the SVM kernel and C/gamma values
+- Build a simple Streamlit/Flask UI for live predictions
+- Add cross-validation for more robust performance estimates
+
+## 👤 Author
 
 **Udaya Shankar T C**
-[LinkedIn](https://www.linkedin.com/in/uday03/) · [GitHub](https://github.com/uday-tc)
+- GitHub: [uday-tc](https://github.com/uday-tc)
+- LinkedIn: [uday03](https://linkedin.com/in/uday03)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
