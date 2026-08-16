@@ -11,7 +11,7 @@ This project uses a Support Vector Machine classifier to predict whether a breas
 ```
 breast-cancer-detection/
 │
-├── breast_cancer_detection.ipynb   # Main notebook (data prep, training, evaluation)
+├── Bc.py   # Main notebook (data prep, training, evaluation)
 ├── README.md                       # Project documentation
 └── requirements.txt                # Python dependencies
 ```
